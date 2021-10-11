@@ -25,8 +25,11 @@ public class MemberSerivce {
 	
 
 	public MemberDTO myPage(String userid) {
-		// TODO Auto-generated method stub
 		MemberDTO dto= dao.myPage(userid);
 		return dto;
+	}
+
+	public void memberUpdate(MemberDTO m) {
+		dao.memberUpdate(m);		
 	}
 }

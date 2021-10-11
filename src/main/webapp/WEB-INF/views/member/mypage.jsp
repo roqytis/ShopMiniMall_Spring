@@ -2,10 +2,31 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
-<form action="MemberUpdateServlet" method="get">
-<input type="hidden" name="userid" value="${login.userid }">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+	 
+	  $("form").on("submit",function(event){//form태그 submt이벤트 발생시 
+		 var email1=$("#email1").val(); 
+		 var email2=$("#email2").val(); 
+		/*  if(email1.length==0|| email2.length==0){
+			 event.preventDefault();  //event 동작 금지 
+			 alert("email  확인");
+		 } */
+		 if(email1.length==0 ){
+			 event.preventDefault();  //event 동작 금지 
+			 alert("email1    확인");
+		 }
+		if(email2.length==0){
+			 event.preventDefault();  //event 동작 금지 
+			 alert("email2    확인");
+		 }
+	  });
+	  
+  });
+</script>
+<form action="loginCheck/memberUpdate" method="get">
+<input type="hidden" name="userid" value="${login.userid }"><!--  hidden data userid 전송  -->
 *아이디:${login.userid }
 <span id="result"></span>
 <br> 
@@ -19,7 +40,7 @@
 전화번호:<select name="phone1">
   <option value="010" 
   <c:if test="${login.phone1=='010' }">selected</c:if>
-  >010</option><!--태그 사이에서 jstl태그 사용   -->
+  >010</option>
   <option value="011"
  <c:if test="${login.phone1=='011' }">selected</c:if>
   >011</option>

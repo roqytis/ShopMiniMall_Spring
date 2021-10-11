@@ -19,23 +19,18 @@ public class LoginController {
 MemberSerivce service;
 
 @RequestMapping(value = "/loginCheck/logout")
-public String logout(HttpSession session) {
+public String logout(HttpSession session) {//로그아웃
 	session.invalidate();
-	//return "../"; //.xml에 설정 main.jsp
-	return "redirect:../"; //.xml에 설정 main.jsp ../ 을 이용하여 /loginCheck 의 상위 주소로 이동
-	//하여 주소를 사용함
+	return "redirect:../"; //main.jsp
 }
 
-
-
-
 @RequestMapping(value = "/login")
-public String login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+public String login(@RequestParam Map<String, String> map, Model model, HttpSession session) {//로그인 
 	MemberDTO dto = service.login(map);
 	System.out.println(map);
 	if(dto!= null ) {
 		session.setAttribute("login", dto);
-		return "main";
+		return "redirect:/goodsList?gCategory=top";  //로그인시 top카테고리를 보이도록 작성
 	}else {
 		model.addAttribute("mesg", "아이디 또는 비번이 잘못되었습니다.");
 		return "loginForm";

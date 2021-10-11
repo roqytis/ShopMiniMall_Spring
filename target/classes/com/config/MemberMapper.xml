@@ -15,8 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	  phone3=#{phone3},
  	  email1=#{email1},
  	  email2=#{email2}
- 	where userid=#{userid}
- 	
+ 	where userid=#{userid} 	
  </update>
 
   <select id="mypage" parameterType="string" 
@@ -26,10 +25,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 from member
 	 where userid =#{userid} 
 	</select>
-	
-	
-	
-	
 	
 	<select id="login" parameterType="hashmap" 
 	resultType="MemberDTO">

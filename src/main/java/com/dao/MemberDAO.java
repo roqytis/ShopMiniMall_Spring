@@ -24,6 +24,9 @@ public class MemberDAO {
 		MemberDTO dto = template.selectOne("MemberMapper.mypage",userid);
 		return dto;
 	}
+	public void memberUpdate(MemberDTO m) {
+		template.update("MemberMapper.memberUpdate", m);		
+	}
 	
 
 }

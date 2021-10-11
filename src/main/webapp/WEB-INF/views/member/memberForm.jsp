@@ -1,25 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready( function() {
-		$("#userid").on("keyup", function() {
-			 $.ajax({
-					url : "idDuplicateCheck",
-					type : "get",
-					data : {
-						id:$("#userid").val(),
-					},
-					dataType:"text",
-					success: function(data,stauts,xhr) {
-						console.log(data);
-						$("#result").text(data);
-					},
-					error:function(xhr,status,error){}
-		  }); //end ajax
-		});  //end on
-	}); //end ready
- </script>
+     
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">   
+   $(document).ready(function(){
+	  $("#userid").on("keyup",function(){
+		  $.ajax({
+			 url:'idDuplicateCheck',
+			 type:'get',
+			 data:{
+				 id:$("#userid").val(),
+			 },
+			 dataType:"text",
+			 success:function(data,status,xhr){
+				 console.log(data);
+				 $("#result").text(data);
+			 },
+			 error:function(xhr,status,error){}
+		  });//end ajax
+	  });//end on
+   });//end ready
+  </script> 
 <form action="memberAdd" method="get">
 *아이디:<input type="text" name="userid" id="userid">
 <span id="result"></span>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>mypage화면입니다.</h1>
+<h1>mypaget화면입니다.</h1>
 <jsp:include page="common/top.jsp" flush="true"></jsp:include><BR>
 <jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 <hr>

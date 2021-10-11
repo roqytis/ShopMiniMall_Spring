@@ -10,12 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from goods
 	where gCode= #{gCode}
 	</select>
+	
 	<select id="goodsList" resultType="GoodsDTO" 
 	parameterType="string">
 	select gCode,gCategory,gName,gContent,gPrice,gImage
 	from goods
-	where gCategory= #{gCategory}
-	
+	where gCategory= #{gCategory}	
 	</select>
 
 </mapper>

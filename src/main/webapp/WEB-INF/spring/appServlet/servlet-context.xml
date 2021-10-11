@@ -9,10 +9,15 @@
 <mvc:annotation-driven></mvc:annotation-driven><!-- mvc기본태그 -->
 <mvc:default-servlet-handler/><!-- mvc기본태그 -->
 
-<mvc:view-controller path="/" view-name="main"/>  <!-- main.jsp -->
-<mvc:view-controller path="/memberForm" view-name="memberForm"/><!--memberForm.jsp  -->
-<mvc:view-controller path="/loginForm" view-name="loginForm"/><!-- loginForm .jsp-->
+<mvc:view-controller path="/" view-name="main"/>
+<mvc:view-controller path="/memberForm" view-name="memberForm"/>
+<mvc:view-controller path="/loginForm" view-name="loginForm"/>
 <mvc:view-controller path="/myPage" view-name="mypage"/><!-- mypage.jsp -->
+
+<!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
+<mvc:resources location="/WEB-INF/views/images/" mapping="/images/**"/>
+<mvc:resources location="/WEB-INF/views/css/" mapping="/css/**"/>
+<mvc:resources location="/WEB-INF/views/js/" mapping="/js/**"/>
 
 <mvc:interceptors>
 	<mvc:interceptor>
@@ -21,7 +26,6 @@
 	</mvc:interceptor>
 </mvc:interceptors>
 <bean id="loginCheckInterceptor" class="com.interceptor.LoginCheckInterceptor"></bean>
-
 <context:component-scan base-package="com.*"></context:component-scan><!-- repoistory,service, controller 생성 -->
 
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
