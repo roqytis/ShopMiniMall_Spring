@@ -26,18 +26,24 @@ public class GoodsController {
 	@Autowired
 	GoodsService serivce;
 	
+	@RequestMapping(value = "/loginCheck/delAllCart")
+	public String delAllCart(@RequestParam("check") ArrayList<String> list) {
+		System.out.println(list);
+		
+		serivce.delAllCart(list); //삭제 갯수 출력  cartMapper.cartAllDel
+		return "redirect:../loginCheck/cartList";   //카트리스트 다시 읽어오기 
+	}
+	
 	
 	
 	
 	
 	@RequestMapping(value = "/loginCheck/cartDelete")
-	public 	@ResponseBody void cartDelte(@RequestParam("num") int num) {//자동 형 변환 파싱
+	@ResponseBody
+	public void cartDelte(@RequestParam("num") int num) {
 		System.out.println(num);
-		serivce.cartDelete(num);//삭제 갯수 출력
+		serivce.cartDelete(num);
 	}
-	
-	
-	
 	@RequestMapping(value = "/loginCheck/cartUpdate")
 	@ResponseBody
 	public void cartUpdate(@RequestParam Map<String, String>map) {
@@ -51,8 +57,7 @@ public class GoodsController {
 		String userid=dto.getUserid();
 		List<CartDTO> list =serivce.cartList(userid);
 		attr.addFlashAttribute("cartList", list);// 리다이렉트시 데이터 유지
-		return "redirect:../cartList"; //servlet-context에 등록
-		
+		return "redirect:../cartList"; //servlet-context에 등록		
 	}
 	@RequestMapping("/loginCheck/cartAdd")
 	public String cartAdd(CartDTO cart, HttpSession session) {

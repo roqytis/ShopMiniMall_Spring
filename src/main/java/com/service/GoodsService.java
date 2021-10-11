@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,10 @@ public void cartUpdate(Map<String, String> map) {
 }
 public void cartDelete(int num) {
 	dao.cartDelete(num);
+	
+}
+public void delAllCart(ArrayList<String> list) {
+	dao.delAllCart(list);
 	
 }
 

@@ -18,6 +18,7 @@
 	alert("${mesg}상품을 장바구니에 담았습니다.");
 </script>
 </c:if>
+<% session.removeAttribute("mesg"); %>
 <FORM name="goodRetrieveForm" method="GET" action="#">
 	    <input type="hidden" name="gImage" value="${goodsRetrieve.gImage }"> 
 	    <input type="hidden" name="gCode" value="${goodsRetrieve.gCode }">

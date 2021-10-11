@@ -31,7 +31,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/loginCheck/memberUpdate")
 	public String memberUpdate(MemberDTO m) {
-		//System.out.println("memberUpdate====="+ m);
+		System.out.println("memberUpdate====="+ m);
 		service.memberUpdate(m);
 		return "redirect:../loignCheck/myPage";
 	}
@@ -41,8 +41,8 @@ public class MemberController {
 		String userid= dto.getUserid();
 		dto= service.myPage(userid);
 		session.setAttribute("login", dto);
-		//System.out.println("mypage함수 호출 =======");
-		return "redirect:../myPage"; //servlet-context에등록
+		System.out.println("mypage함수 호출 =======");
+		return "redirect:../myPage"; //servlet-context에등록		
 	}
 	@RequestMapping(value = "/memberAdd")
 	public String memberAdd(MemberDTO m,Model model) {

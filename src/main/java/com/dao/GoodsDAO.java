@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,10 @@ public class GoodsDAO {
 	}
 	public void cartDelete(int num) {
 		int n= template.delete("CartMapper.cartDel", num);
+		
+	}
+	public void delAllCart(ArrayList<String> list) {
+		int n = template.delete("CartMapper.cartAllDel", list);
 		
 	}
 
