@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.MemberDTO;
-import com.service.MemberSerivce;
+import com.service.MemberService;
 
 @Controller
 public class MemberController {
 	@Autowired
-	MemberSerivce service;
+	MemberService service;
 	
 	@RequestMapping(value = "/idDuplicateCheck", produces="text/plain;charset=UTF-8")
 	@ResponseBody

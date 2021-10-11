@@ -4,24 +4,27 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-function totalXXX() {  //총합을 구하는 함수 
+function totalXXX() {
 	var totalSum=0;
-	$(".sum").each(function (idx, data) {//idx, element
+	$(".sum").each(function (idx, data) {
 		totalSum += Number.parseInt($(data).text());
 	});	
 	$("#totalSum").text(totalSum);
 }
-//////////////////////
-$(function() {//화면이 불러지면 
-	totalXXX();//총합 구하기 
+$(function() {
+	totalXXX();
+	
+	//주문하기
+	$(".orderBtn").on("click",function(){
+		var num= $(this).attr("data-num");//주문번호
+		location.href="loginCheck/orderConfirm?num="+num;		
+	});
 	
 	//전체삭제
 	$("#delAllCart").on("click", function() {
 		$("form").attr("action", "loginCheck/delAllCart");
 		$("form").submit();
-	});
-	
-	
+	})
 	//전체선택
 	$("#allCheck").on("click", function() {
 		var result= this.checked;
@@ -45,7 +48,6 @@ $(function() {//화면이 불러지면
 				console.log("success");
 				//dom삭제 
 				xxx.parents().filter("tr").remove();
-				totalXXX();  //////////////////////////////////////////총합 다시 구하기 
 			},
 			error: function(xhr, status, error) {
 				console.log(error);
@@ -70,8 +72,7 @@ $(function() {//화면이 불러지면
 			success: function (data, status, xhr) {
 				var total= 
 						parseInt(gAmount)*parseInt(gPrice);
-				$("#sum"+num).text(total);
-				totalXXX();  /// 총합 다시 구하기 
+				$("#sum"+num).text(total);				
 			},
 			error: function (xhr, status,error) {
 				console.log(error);
@@ -134,7 +135,7 @@ $(function() {//화면이 불러지면
 
 
 
-	<form name="myForm"><!-- action 없음   -->
+	<form name="myForm">
 	    
 	    
 <!-- 반복시작 -->
@@ -173,8 +174,8 @@ $(function() {//화면이 불러지면
 				style='padding-left: 5px'><span id="sum${x.num}" class="sum">
 				${x.gPrice * x.gAmount}
 				</span></td>
-			<td><input type="button" value="주문"
-				onclick="order(${x.num})"></td>
+			<td><input type="button" value="주문" class="orderBtn"
+				data-num="${x.num}"></td>
 			<td class="td_default" align="center" width="30"
 				style='padding-left: 10px'>
 				<input type="button" value="삭제" class="deleteBtn"

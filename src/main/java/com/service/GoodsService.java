@@ -16,6 +16,13 @@ public class GoodsService {
 @Autowired
 GoodsDAO dao;
 
+public CartDTO orderConfirmByNum(int num) {
+	CartDTO dto = dao.orderConfirmByNum(num);
+	return dto;
+}
+
+
+
 public List<CartDTO> cartList(String userid) {
 	List<CartDTO> list= dao.cartList(userid);
 	return list;
@@ -45,6 +52,7 @@ public void delAllCart(ArrayList<String> list) {
 	dao.delAllCart(list);
 	
 }
+
 
 
 

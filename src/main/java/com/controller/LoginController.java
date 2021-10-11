@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dto.MemberDTO;
-import com.service.MemberSerivce;
+import com.service.MemberService;
 
 @Controller
 public class LoginController {
 @Autowired
-MemberSerivce service;
+MemberService service;
 
 @RequestMapping(value = "/loginCheck/logout")
 public String logout(HttpSession session) {
