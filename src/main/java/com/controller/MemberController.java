@@ -1,18 +1,23 @@
 package com.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dto.MemberDTO;
+import com.service.MemberSerivce;
 
-@Controller////////////////////////////////////////
+@Controller
 public class MemberController {
-
-	@RequestMapping(value="/memberAdd")//회원가입 기능 
-	public String memberAdd(MemberDTO m) {
-		System.out.println("memberAdd()============"+ m);
-		//출력까지만 구현함. 이후 회원가입 구현 함
+	@Autowired
+	MemberSerivce service;  //Service클래스 @Serivce+ Compnonent-scan
+	
+	@RequestMapping(value = "/memberAdd")//회원가입
+	public String memberAdd(MemberDTO m, Model model) {
+		service.memberAdd(m);
+		
+		model.addAttribute("success", "회원가입성공");  //main.jsp에서 success검사 
 		return "main";//main.jsp
 	}
-	
 }

@@ -4,7 +4,6 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("GoodsDTO")
 public class GoodsDTO {
-
 	private String gCode;
 	private String gCategory;
 	private String gName;

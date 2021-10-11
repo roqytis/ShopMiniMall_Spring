@@ -3,7 +3,7 @@ package com.dto;
 import org.apache.ibatis.type.Alias;
 
 @Alias("CartDTO")
-public class CartDTO {
+	public class CartDTO {
 
 	private int num;
 	private String userid;
@@ -92,5 +92,6 @@ public class CartDTO {
 				+ "]";
 	}
 	
-	
-}
+		
+	}
+

@@ -1,32 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <form action="MemberUpdateServlet" method="get">
-<input type="hidden" name="userid" value="${login.userid}"><!--  -->
-*아이디:${login.userid}<!--  -->
+<input type="hidden" name="userid" value="${login.userid }">
+*아이디:${login.userid }
 <span id="result"></span>
 <br> 
-이름:<input type="text" name="username" value="${login.username}"><br> <!--  -->
-<input type="text" value="${login.post}"name="post" id="sample4_postcode" placeholder="우편번호"><!--  -->
+이름:<input type="text" name="username" value="${login.username }"><br> 
+<input type="text" value="${login.post }"name="post" id="sample4_postcode" placeholder="우편번호">
 <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" value="${login.addr1}" name="addr1" id="sample4_roadAddress" placeholder="도로명주소"><!--  -->
-<input type="text" value="${login.addr2}" name="addr2" id="sample4_jibunAddress" placeholder="지번주소"><!--  -->
+<input type="text" value="${login.addr1 }" name="addr1" id="sample4_roadAddress" placeholder="도로명주소">
+<input type="text" value="${login.addr2 }" name="addr2" id="sample4_jibunAddress" placeholder="지번주소">
 <span id="guide" style="color:#999"></span>
 <br>
 전화번호:<select name="phone1">
   <option value="010" 
-    <c:if test="${login.phone1=='010'}">selected </c:if>
-  >010</option><!-- html태그 사이에서 jstl태그 사용  -->
+  <c:if test="${login.phone1=='010' }">selected</c:if>
+  >010</option>
   <option value="011"
-    <c:if test="${login.phone1=='011'}">selected </c:if>
-  >011</option><!-- html태그 사이에서 jstl태그 사용  -->
+ <c:if test="${login.phone1=='011' }">selected</c:if>
+  >011</option>
 </select>-
-<input type="text" value="${login.phone2}" name="phone2" >
--<input type="text" value="${login.phone3}" name="phone3" >
+<input type="text" value="${login.phone2 }" name="phone2" >
+-<input type="text" value="${login.phone3 }" name="phone3" >
 <br>
-이메일:<input type="text" value="${login.email1}" name="email1" id="email1">@
-       <input type="text" value="${login.email2}" name="email2" id="email2" placeholder="직접입력">
+이메일:<input type="text" value="${login.email1 }" name="email1" id="email1">@
+       <input type="text" value="${login.email2 }" name="email2" id="email2" placeholder="직접입력">
        <select  id="emailSelect">
         <option value="daum.net">daum.net</option>
         <option value="naver.com">naver.com</option>
