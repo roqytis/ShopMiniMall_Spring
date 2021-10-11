@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.MemberDTO;
 import com.service.MemberSerivce;
@@ -14,6 +16,21 @@ import com.service.MemberSerivce;
 public class MemberController {
 	@Autowired
 	MemberSerivce service;
+	
+	@RequestMapping(value ="idDuplicateCheck", produces = "text/plain;charset=UTF-8")//한글 처리
+	public @ResponseBody String idDuplicateCheck(@RequestParam("id") String userid) {
+		MemberDTO dto= service.myPage(userid);
+		System.out.println("idDuplicateCheck===== "+userid);
+		System.out.println(dto);
+		String mesg="아이디 사용가능";
+		if (dto != null) {
+			mesg="아이디 중복";
+		}
+		return mesg;
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/loginCheck/myPage")
 	public String myPage(HttpSession session) {
