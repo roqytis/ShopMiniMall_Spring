@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,11 @@ import com.service.GoodsService;
 public class GoodsController {
 	@Autowired
 	GoodsService serivce;
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/loginCheck/cartDelete")
 	public 	@ResponseBody void cartDelte(@RequestParam("num") int num) {//자동 형 변환 파싱
 		System.out.println(num);
