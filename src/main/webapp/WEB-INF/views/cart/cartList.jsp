@@ -5,10 +5,32 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(function() {
+	//삭제버튼 이벤트처리
+	$(".deleteBtn").on("click", function () {
+		console.log("deleteBtn 클릭 ");
+		var num= $(this).attr("data-num");//삭제할 번호
+		var xxx= $(this); //td태그 
+		$.ajax({
+			url: "loginCheck/cartDelete",
+			type:"get",
+			dataType: "text",
+			data: {
+				num: num
+			},
+			success: function(data, status, xhr) {
+				console.log("success");
+				xxx.parents().filter("tr").remove();//dom삭제 
+			},
+			error: function(xhr, status, error) {
+				console.log(error);
+			}			
+		});//end ajax
+	});//end event
+	//수정버튼이벤트 처리 
 	$(".updateBtn").on("click", function() {
 		//console.log("updateBtn Click 실행됨");
 		var num=$(this).attr("data-num");
-		var gAmount= $("#cartAmount"+num).val();  //카트번호이용 class선택하여 수량을 가져옴
+		var gAmount= $("#cartAmount"+num).val();
 		var gPrice =  $(this).attr("data-price");
 		console.log(num, gPrice);
 		$.ajax({
@@ -19,18 +41,11 @@ $(function() {
 				num: num,
 				gAmount: gAmount
 			},
-			
-			
-			
 			success: function (data, status, xhr) {
 				var total= 
-						parseInt(gAmount)*parseInt(gPrice);//성공시 받은 데이터는 없이 
-						//토탈 가격만 변동 시킴 
+						parseInt(gAmount)*parseInt(gPrice);
 				$("#sum"+num).text(total);				
 			},
-			
-			
-			
 			error: function (xhr, status,error) {
 				console.log(error);
 			}//end error			
@@ -155,7 +170,7 @@ console.log(document.getElementById("ggPrice"+myNum));
 <!-- 반복시작 -->
 <c:forEach var="x" items="${cartList}">
 
-		
+	
 
 		<tr>
 			<td class="td_default" width="80">
@@ -192,8 +207,8 @@ console.log(document.getElementById("ggPrice"+myNum));
 				onclick="order(${x.num})"></td>
 			<td class="td_default" align="center" width="30"
 				style='padding-left: 10px'>
-				<input type="button" value="삭제"
-				onclick="delCart(${x.num})"></td>
+				<input type="button" value="삭제" class="deleteBtn"
+				data-num="${x.num }"></td>
 			<td height="10"></td>
 		</tr>
 

@@ -24,22 +24,20 @@ import com.service.GoodsService;
 public class GoodsController {
 	@Autowired
 	GoodsService serivce;
-	@RequestMapping(value = "/loginCheck/cartUpdate")
-	@ResponseBody
-	public void cartUpdate(@RequestParam Map<String, String>map) {
-		System.out.println(map);
-		serivce.cartUpdate(map);//db 업데이트 후 갯수 출력   cartMapper.cartUpdate
+	@RequestMapping(value = "/loginCheck/cartDelete")
+	public 	@ResponseBody void cartDelte(@RequestParam("num") int num) {//자동 형 변환 파싱
+		System.out.println(num);
+		serivce.cartDelete(num);//삭제 갯수 출력
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value = "/loginCheck/cartUpdate")
+	@ResponseBody
+	public void cartUpdate(@RequestParam Map<String, String>map) {
+		System.out.println(map);
+		serivce.cartUpdate(map);
+	}
 	
 	@RequestMapping("/loginCheck/cartList")
 	public String cartList(RedirectAttributes attr, HttpSession session) {
