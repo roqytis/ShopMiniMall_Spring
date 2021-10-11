@@ -1,0 +1,6 @@
+xml에 
+주소
+ <mvc:view-controller path="/" view-name="main"/>
+    <mvc:view-controller path="/memberForm" view-name="memberForm"/><!--ㅡmemberForm.jsp  -->
+    <mvc:view-controller path="/loginForm" view-name="loginForm"/><!-- loginForm.jsp -->
+    

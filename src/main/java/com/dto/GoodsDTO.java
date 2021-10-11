@@ -2,7 +2,7 @@ package com.dto;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("GoodsDTO")/////////////////////
+@Alias("GoodsDTO")
 public class GoodsDTO {
 
 	private String gCode;
@@ -11,6 +11,7 @@ public class GoodsDTO {
 	private String gContent;
 	private int gPrice;
 	private String gImage;
+	
 	public GoodsDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -65,5 +66,6 @@ public class GoodsDTO {
 		return "GoodsDTO [gCode=" + gCode + ", gCategory=" + gCategory + ", gName=" + gName + ", gContent=" + gContent
 				+ ", gPrice=" + gPrice + ", gImage=" + gImage + "]";
 	}
-
+	
+	
 }

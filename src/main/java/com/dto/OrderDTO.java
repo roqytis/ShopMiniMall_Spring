@@ -4,7 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("OrderDTO")
 public class OrderDTO {
-
+	
 	private int num;
 	private String userid;
 	private String gCode;
@@ -150,4 +150,8 @@ public class OrderDTO {
 				+ phone + ", payMethod=" + payMethod + ", orderday=" + orderday + "]";
 	}
 
+	
+	
+	
+	
 }
