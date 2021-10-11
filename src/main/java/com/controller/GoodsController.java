@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dto.CartDTO;
 import com.dto.GoodsDTO;
 import com.dto.MemberDTO;
+import com.dto.OrderDTO;
 import com.service.GoodsService;
 import com.service.MemberService;
 
@@ -28,19 +29,31 @@ public class GoodsController {
 	@Autowired
 	MemberService mService;
 	
-	@RequestMapping("/loginCheck/orderConfirm")//주문하기 
+	@RequestMapping("/loginCheck/orderDone")
+	public String orderDone(OrderDTO oDTO,
+			int orderNum, HttpSession session, RedirectAttributes xxx) {
+		System.out.println(oDTO+"\t"+orderNum);
+		MemberDTO dto=(MemberDTO)session.getAttribute("login");
+		
+		oDTO.setUserid(dto.getUserid());// 주문정보에 사용자 id 추가 
+		//oDTO.setNum(orderNum);
+		service.orderDone(oDTO, orderNum);///////////////insert, delete	
+		
+		xxx.addFlashAttribute("oDTO", oDTO);
+		return "redirect:../orderDone";//servlet-context.xml 에 주소등록 
+	}
+	
+	@RequestMapping("/loginCheck/orderConfirm")
 	public String orderConfirm(@RequestParam("num") int num, HttpSession session, 
 			RedirectAttributes xxx) {
 		MemberDTO mDTO=(MemberDTO)session.getAttribute("login");
 		String userid= mDTO.getUserid();
-		mDTO= mService.myPage(userid); //id 이용 사용자 정보 가져오기 
+		mDTO= mService.myPage(userid); //사용자 정보 가져오기 
 		CartDTO cart= service.orderConfirmByNum(num); //장바구니 정보가져오기 
 		xxx.addFlashAttribute("mDTO", mDTO);  //request에 회원정보저장
 		xxx.addFlashAttribute("cDTO", cart); //request에 카트정보저장	
 		return "redirect:../orderConfirm"; //servlet-context에 등록
 	}
-	
-	
 	
 	@RequestMapping(value = "/loginCheck/delAllCart")
 	public String delAllCart(@RequestParam("check") ArrayList<String> list) {

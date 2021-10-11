@@ -10,15 +10,6 @@ begin
    return orderInfo_seq.nextval;
 end;
 / -->
-
-	<select id="cartByNum" parameterType="int" 
-	resultType="CartDTO">
-	 select num,userid,gCode,gSize,gPrice,gColor,gAmount,gName,gImage
-	 from cart
-	 where num=#{num}
-	</select>
-	
-	
 <insert id="orderAllDone" parameterType="arraylist">
 	  insert all
 	  <foreach item="item" index="index" collection="list">
@@ -94,5 +85,10 @@ end;
 	 where userid=#{userid}
 	</select>
 	
-
+	<select id="cartByNum" parameterType="int" 
+	resultType="CartDTO">
+	 select num,userid,gCode,gSize,gPrice,gColor,gAmount,gName,gImage
+	 from cart
+	 where num=#{num}
+	</select>
 </mapper>

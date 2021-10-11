@@ -26,7 +26,7 @@
 </script>	
 
 
-<form name="myForm" method="get" action="CartOrderDoneServlet">
+<form name="myForm" method="get" action="loginCheck/orderDone"><!--  -->
 <input type="hidden" name="gCode" value="${cDTO.gCode}">
 <input type="hidden" name="gName" value="${cDTO.gName}">
 <input type="hidden" name="gPrice" value="${cDTO.gPrice}">
@@ -34,7 +34,7 @@
 <input type="hidden" name="gColor" value="${cDTO.gColor}">
 <input type="hidden" name="gAmount" value="${cDTO.gAmount}">
 <input type="hidden" name="gImage" value="${cDTO.gImage}">
-<input type="hidden" name="orderNum" value="${cDTO.num}"><!--번호 : 카트 삭제 사용할 번호   -->
+<input type="hidden" name="orderNum" value="${cDTO.num}">
 	<table width="80%" cellspacing="0" cellpadding="0">
 
 		<tr>

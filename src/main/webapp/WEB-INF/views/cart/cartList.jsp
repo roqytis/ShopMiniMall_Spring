@@ -16,7 +16,7 @@ $(function() {
 	
 	//주문하기
 	$(".orderBtn").on("click",function(){
-		var num= $(this).attr("data-num");//주문번호
+		var num= $(this).attr("data-num");
 		location.href="loginCheck/orderConfirm?num="+num;		
 	});
 	
