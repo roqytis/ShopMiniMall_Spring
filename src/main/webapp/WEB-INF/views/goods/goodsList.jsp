@@ -26,7 +26,7 @@
 								<tr>
 									<td><a href="goodsRetrieve?gCode=${dto.gCode }"> <img
 											src="images/items/${dto.gImage }.gif" border="0"
-											align="center" width="200"><!--  수정-->
+											align="center" width="200">
 									</a></td>
 								</tr>
 								<tr>
@@ -35,7 +35,7 @@
 								</tr>
 								<tr>
 									<td class="td_default" align="center"><a class="a_black"
-										href="goodsRetrieve?gCode=${dto.gCode }"> ${dto.gName }<br><!-- 수정   -->
+										href="goodsRetrieve?gCode=${dto.gCode }"> ${dto.gName }<br>
 									</a> <font color="gray"> -------------------- </font></td>
 
 								</tr>

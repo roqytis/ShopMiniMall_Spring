@@ -13,6 +13,7 @@
 <mvc:view-controller path="/memberForm" view-name="memberForm"/>
 <mvc:view-controller path="/loginForm" view-name="loginForm"/>
 <mvc:view-controller path="/myPage" view-name="mypage"/><!-- mypage.jsp -->
+<mvc:view-controller path="/cartList" view-name="cartList"/><!-- cartList.jsp -->
 
 <mvc:resources location="/WEB-INF/views/images/" mapping="/images/**"/>
 <mvc:resources location="/WEB-INF/views/css/" mapping="/css/**"/>

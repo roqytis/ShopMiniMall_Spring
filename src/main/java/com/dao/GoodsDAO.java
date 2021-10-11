@@ -13,7 +13,11 @@ import com.dto.GoodsDTO;
 public class GoodsDAO {
 	@Autowired
 	SqlSessionTemplate template;
-
+	
+	public List<CartDTO> cartList(String userid) {
+		List<CartDTO> list = template.selectList("CartMapper.cartList", userid);
+		return list;
+	}
 	public List<GoodsDTO> goodsList(String gCategory) {
 		List<GoodsDTO> list= template.selectList("GoodsMapper.goodsList", gCategory);
 		return list;
@@ -27,5 +31,7 @@ public class GoodsDAO {
 	public void cartAdd(CartDTO cart) {
 		template.insert("CartMapper.cartAdd", cart);		
 	}
+
+
 	
 }

@@ -14,6 +14,10 @@ public class GoodsService {
 @Autowired
 GoodsDAO dao;
 
+public List<CartDTO> cartList(String userid) {
+	List<CartDTO> list= dao.cartList(userid);
+	return list;
+}
 public List<GoodsDTO> goodsList(String gCategory) {
 	List<GoodsDTO> list= dao.goodsList(gCategory);
 	return list;
@@ -27,5 +31,7 @@ public GoodsDTO goodsRetrieve(String gCode) {
 public void cartAdd(CartDTO cart) {
 	dao.cartAdd(cart);	
 }
+
+
 
 }
