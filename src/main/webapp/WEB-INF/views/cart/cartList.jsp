@@ -2,9 +2,42 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-/* 자바스크립트 프론트 처리 => 이후 jquery로 변경할 것임.  */
-   var httpRequest;
+$(function() {
+	$(".updateBtn").on("click", function() {
+		//console.log("updateBtn Click 실행됨");
+		var num=$(this).attr("data-num");
+		var gAmount= $("#cartAmount"+num).val();  //카트번호이용 class선택하여 수량을 가져옴
+		var gPrice =  $(this).attr("data-price");
+		console.log(num, gPrice);
+		$.ajax({
+			url: "loginCheck/cartUpdate",
+			type: "get",
+			dataType: "text",
+			data: {
+				num: num,
+				gAmount: gAmount
+			},
+			
+			
+			
+			success: function (data, status, xhr) {
+				var total= 
+						parseInt(gAmount)*parseInt(gPrice);//성공시 받은 데이터는 없이 
+						//토탈 가격만 변동 시킴 
+				$("#sum"+num).text(total);				
+			},
+			
+			
+			
+			error: function (xhr, status,error) {
+				console.log(error);
+			}//end error			
+		});//end ajax
+	}); //end click
+});//end ready
+  /*  var httpRequest;
    var myNum;
 	function amountUpdate(num){
 	myNum=num;
@@ -49,9 +82,9 @@ console.log(document.getElementById("ggPrice"+myNum));
 	  /* for(var x of, z){
 		  x.checked=xxx.checked;
 	  } */
-	}//
+	//}//
 	
-	function delAllCart(f){
+/* 	function delAllCart(f){
 		f.action="CartDelAllServlet";
 		f.submit();
 	}
@@ -61,7 +94,7 @@ console.log(document.getElementById("ggPrice"+myNum));
 	function orderAllConfirm(f){
 		f.action="CartOrderAllConfirmServlet";
 		f.submit();
-	}
+	} */ 
 </script>
 
 <table width="90%" cellspacing="0" cellpadding="0" border="0">
@@ -122,12 +155,7 @@ console.log(document.getElementById("ggPrice"+myNum));
 <!-- 반복시작 -->
 <c:forEach var="x" items="${cartList}">
 
-		<!-- 	<input type="text" name="num81" value="81" id="num81">
-			<input type="text" name="gImage81" value="bottom1" id="gImage81">
-		 <input type="text" name="gName81" value="제나 레이스 스커트" id="gName81">
-		  <input type="text" name="gSize81" value="L" id="gSize81">
-		   <input type="text" name="gColor81" value="navy" id="gColor81"> 
-		   <input type="text" name="gPrice81" value="9800" id="gPrice81"> -->
+		
 
 		<tr>
 			<td class="td_default" width="80">
@@ -153,7 +181,9 @@ console.log(document.getElementById("ggPrice"+myNum));
 				id="cartAmount${x.num}" style="text-align: right" maxlength="3"
 				size="2" value="${x.gAmount}"></input></td>
 			<td><input type="button" value="수정"
-				onclick="amountUpdate(${x.num})" /></td>
+			     class="updateBtn"
+			     data-num="${x.num}" 
+			     data-price="${x.gPrice}" /></td>
 			<td class="td_default" align="center" width="80"
 				style='padding-left: 5px'><span id="sum${x.num}">
 				${x.gPrice * x.gAmount}

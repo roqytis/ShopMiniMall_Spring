@@ -69,6 +69,8 @@ end;
 	 set gAmount= #{gAmount}
 	 where num=#{num}
 	</update>
+	
+	
 	<insert id="cartAdd" parameterType="CartDTO">
 		insert into cart (num,userid,gCode,gPrice,
 		        gSize,gColor,gAmount,gName,gImage)

@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,15 +24,11 @@ import com.service.GoodsService;
 public class GoodsController {
 	@Autowired
 	GoodsService serivce;
-	
-	@RequestMapping("/loginCheck/cartList")//interceptor 통과
-	public String cartList(RedirectAttributes attr, HttpSession session) {
-		MemberDTO dto= (MemberDTO)session.getAttribute("login");
-		String userid=dto.getUserid();
-		List<CartDTO> list =serivce.cartList(userid);
-		attr.addFlashAttribute("cartList", list);// 리다이렉트시 데이터 유지
-		return "redirect:../cartList"; //servlet-context에 등록
-		
+	@RequestMapping(value = "/loginCheck/cartUpdate")
+	@ResponseBody
+	public void cartUpdate(@RequestParam Map<String, String>map) {
+		System.out.println(map);
+		serivce.cartUpdate(map);//db 업데이트 후 갯수 출력   cartMapper.cartUpdate
 	}
 	
 	
@@ -39,6 +37,19 @@ public class GoodsController {
 	
 	
 	
+	
+	
+	
+	
+	@RequestMapping("/loginCheck/cartList")
+	public String cartList(RedirectAttributes attr, HttpSession session) {
+		MemberDTO dto= (MemberDTO)session.getAttribute("login");
+		String userid=dto.getUserid();
+		List<CartDTO> list =serivce.cartList(userid);
+		attr.addFlashAttribute("cartList", list);// 리다이렉트시 데이터 유지
+		return "redirect:../cartList"; //servlet-context에 등록
+		
+	}
 	@RequestMapping("/loginCheck/cartAdd")
 	public String cartAdd(CartDTO cart, HttpSession session) {
 		MemberDTO mDTO= (MemberDTO)session.getAttribute("login");

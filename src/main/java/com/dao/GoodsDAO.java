@@ -1,6 +1,7 @@
 package com.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class GoodsDAO {
 
 	public void cartAdd(CartDTO cart) {
 		template.insert("CartMapper.cartAdd", cart);		
+	}
+	public void cartUpdate(Map<String, String> map) {
+		int n = template.update("CartMapper.cartUpdate", map);
+		
 	}
 
 
