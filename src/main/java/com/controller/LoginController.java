@@ -15,22 +15,31 @@ import com.service.MemberSerivce;
 
 @Controller
 public class LoginController {
-	@Autowired
-	MemberSerivce service;
+@Autowired
+MemberSerivce service;
 
-	@RequestMapping(value = "/login")
-	public String login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
-		System.out.println(map);	
-				
-		MemberDTO dto = service.login(map); // userid='xxx', passwd='zzzz'
-		System.out.println(dto);
-		
-		if (dto != null) {// 로그인 된경우
-			session.setAttribute("login", dto);
-			return "main"; // main.jsp
-		} else {// 로그인 안된 경우
-			model.addAttribute("mesg", "아이디 또는 비번이 잘못되었습니다.");
-			return "loginForm"; // loginForm.jsp
-		}
+@RequestMapping(value = "/loginCheck/logout")
+public String logout(HttpSession session) {
+	session.invalidate();
+	//return "../"; //.xml에 설정 main.jsp
+	return "redirect:../"; //.xml에 설정 main.jsp ../ 을 이용하여 /loginCheck 의 상위 주소로 이동
+	//하여 주소를 사용함
+}
+
+
+
+
+@RequestMapping(value = "/login")
+public String login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+	MemberDTO dto = service.login(map);
+	System.out.println(map);
+	if(dto!= null ) {
+		session.setAttribute("login", dto);
+		return "main";
+	}else {
+		model.addAttribute("mesg", "아이디 또는 비번이 잘못되었습니다.");
+		return "loginForm";
 	}
+	
+}
 }

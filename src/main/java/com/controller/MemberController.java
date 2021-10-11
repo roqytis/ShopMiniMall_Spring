@@ -1,5 +1,7 @@
 package com.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,13 +13,27 @@ import com.service.MemberSerivce;
 @Controller
 public class MemberController {
 	@Autowired
-	MemberSerivce service;  //Service클래스 @Serivce+ Compnonent-scan
+	MemberSerivce service;
 	
-	@RequestMapping(value = "/memberAdd")//회원가입
-	public String memberAdd(MemberDTO m, Model model) {
-		service.memberAdd(m);
+	@RequestMapping(value = "/loginCheck/myPage")
+	public String myPage(HttpSession session) {
 		
-		model.addAttribute("success", "회원가입성공");  //main.jsp에서 success검사 
-		return "main";//main.jsp
+		MemberDTO dto = (MemberDTO)session.getAttribute("login");
+		String userid= dto.getUserid();  //세션에서 id 얻기 
+		dto= service.myPage(userid);
+		System.out.println(dto);
+		
+		session.setAttribute("login", dto);
+		return "redirect:../myPage"; //주소에 해당하는 페이지를  servlet-context에등록사용
+		//return "myPage"; //주소에 해당하는 페이지를  servlet-context에등록사용
+	}
+	
+	
+	
+	@RequestMapping(value = "/memberAdd")
+	public String memberAdd(MemberDTO m,Model model) {
+		service.memberAdd(m);
+		model.addAttribute("success", "회원가입성공");
+		return "main";
 	}
 }

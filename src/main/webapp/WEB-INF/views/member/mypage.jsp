@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <form action="MemberUpdateServlet" method="get">
 <input type="hidden" name="userid" value="${login.userid }">
 *아이디:${login.userid }
@@ -17,7 +19,7 @@
 전화번호:<select name="phone1">
   <option value="010" 
   <c:if test="${login.phone1=='010' }">selected</c:if>
-  >010</option>
+  >010</option><!--태그 사이에서 jstl태그 사용   -->
   <option value="011"
  <c:if test="${login.phone1=='011' }">selected</c:if>
   >011</option>
