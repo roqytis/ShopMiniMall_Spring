@@ -20,14 +20,13 @@
 				<tr>
 
 <!-- 반복시작 -->
-<c:forEach var="dto" items="${goodsList }" varStatus="status"><!--  -->
-
+<c:forEach var="dto" items="${goodsList }" varStatus="status">
 						<td>
 							<table style='padding: 15px'>
 								<tr>
-									<td><a href="GoodsRetrieveServlet?gCode=${dto.gCode }"> <img
+									<td><a href="goodsRetrieve?gCode=${dto.gCode }"> <img
 											src="images/items/${dto.gImage }.gif" border="0"
-											align="center" width="200">
+											align="center" width="200"><!--  수정-->
 									</a></td>
 								</tr>
 								<tr>
@@ -36,7 +35,7 @@
 								</tr>
 								<tr>
 									<td class="td_default" align="center"><a class="a_black"
-										href="GoodsRetrieveServlet?gCode=${dto.gCode }"> ${dto.gName }<br>
+										href="goodsRetrieve?gCode=${dto.gCode }"> ${dto.gName }<br><!-- 수정   -->
 									</a> <font color="gray"> -------------------- </font></td>
 
 								</tr>

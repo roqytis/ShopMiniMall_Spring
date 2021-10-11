@@ -69,18 +69,21 @@ end;
 	 set gAmount= #{gAmount}
 	 where num=#{num}
 	</update>
+	
 	<insert id="cartAdd" parameterType="CartDTO">
 		insert into cart (num,userid,gCode,gPrice,
 		        gSize,gColor,gAmount,gName,gImage)
 		values( cart_seq.nextval, #{userid},#{gCode},#{gPrice},
 		        #{gSize},#{gColor},#{gAmount},#{gName},#{gImage} )
 	</insert>
+	
 	<select id="cartList" parameterType="string" 
 	resultType="CartDTO">
 	 select num,userid,gCode,gSize,gPrice,gColor,gAmount,gName,gImage
 	 from cart
 	 where userid=#{userid}
 	</select>
+	
 	<select id="cartByNum" parameterType="int" 
 	resultType="CartDTO">
 	 select num,userid,gCode,gSize,gPrice,gColor,gAmount,gName,gImage

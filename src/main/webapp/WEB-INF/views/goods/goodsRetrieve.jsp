@@ -1,22 +1,27 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script>
-  function reqCheck(action, myForm){
-	  if(action == 'cart'){
-		  myForm.action="CartAddServlet";
-	  }else{
-		  myForm.action="OrderAddServlet";
-	  }
-  }
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		$("#cart").on("click", function() {
+			$("form").attr("action", "loginCheck/cartAdd")
+		})
+	})
+
 </script>
-<FORM name="goodRetrieveForm" method="GET" action="#">
-	    <input type="hidden" name="gImage" value="${goodsRetrieve.gImage }"> <input
-		type="hidden" name="gCode" value="${goodsRetrieve.gCode }"> <input
-		type="hidden" name="gName" value="${goodsRetrieve.gName }"> <input
-		type="hidden" name="gPrice" value="${goodsRetrieve.gPrice }">
+<c:if test="${!empty mesg }">
+<script>
+	alert("${mesg}상품을 장바구니에 담았습니다.");
+</script>
+</c:if>
+<FORM name="goodRetrieveForm" method="GET" action="#"><!--action을 막음 --><!-- hidden data -->
+	    <input type="hidden" name="gImage" value="${goodsRetrieve.gImage }"> 
+	    <input type="hidden" name="gCode" value="${goodsRetrieve.gCode }">
+	     <input	type="hidden" name="gName" value="${goodsRetrieve.gName }"> 
+	     <input	type="hidden" name="gPrice" value="${goodsRetrieve.gPrice }">
 
 	<table width="100%" cellspacing="0" cellpadding="0">
 		<tr>
@@ -104,7 +109,7 @@ ${goodsRetrieve.gContent }</td>
 		</tr>
 	</table>
 
-	<br> <button onclick="reqCheck('order',goodRetrieveForm)">구매</button>
+	<br> <button >구매</button>
 	&nbsp;&nbsp;
-	<button onclick="reqCheck('cart',goodRetrieveForm)">장바구니</button>
+	<button id="cart">장바구니</button>
 </FORM>

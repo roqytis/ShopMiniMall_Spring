@@ -19,7 +19,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/idDuplicateCheck", produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String idDuplicatedCheck(@RequestParam("id") String userid) {//아이디 중복검사
+	public String idDuplicatedCheck(@RequestParam("id") String userid) {
 		MemberDTO dto= service.myPage(userid);
 		System.out.println("idDuplicatedCheck====   "+ userid);
 		String mesg="아이디 사용가능";
@@ -30,26 +30,22 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/loginCheck/memberUpdate")
-	public String memberUpdate(MemberDTO m) {//회원정보수정
+	public String memberUpdate(MemberDTO m) {
 		//System.out.println("memberUpdate====="+ m);
 		service.memberUpdate(m);
 		return "redirect:../loignCheck/myPage";
 	}
-
-	
-	
-	
 	@RequestMapping(value = "/loignCheck/myPage")
-	public String myPage(HttpSession session) {//마이페이지
+	public String myPage(HttpSession session) {
 		MemberDTO dto = (MemberDTO)session.getAttribute("login");
 		String userid= dto.getUserid();
 		dto= service.myPage(userid);
 		session.setAttribute("login", dto);
 		//System.out.println("mypage함수 호출 =======");
-		return "redirect:../myPage"; //servlet-context에등록  myPage.jsp
+		return "redirect:../myPage"; //servlet-context에등록
 	}
 	@RequestMapping(value = "/memberAdd")
-	public String memberAdd(MemberDTO m,Model model) {//회원가입
+	public String memberAdd(MemberDTO m,Model model) {
 		service.memberAdd(m);
 		model.addAttribute("success", "회원가입성공");
 		return "main";
